@@ -37,7 +37,7 @@ function Box() {
   };
 
   return (
-    <div className="w-[720px] border mx-auto flex justify-evenly items-center p-3 h-[360px] box">
+    <div className="w-full mx-auto flex flex-col justify-evenly pt-44 items-center p-3 h-[360px] box">
       <Toaster
         className="text-sm"
         toastOptions={{
@@ -53,58 +53,55 @@ function Box() {
       >
         {recomendation}
       </div>
-      <div>
-        <label>
-          <p className="text-sm text-white font-semibold">Decks to be dealth</p>
-          <input
-            type="number"
-            className="px-4 py-1 rounded-sm shadow-xl w-24"
-            min={1}
-            max={10}
-            value={decks}
-            onChange={(e) => setDecks(e.target.value)}
-          />
-        </label>
-        <label>
-          <p className="text-sm text-white font-semibold">Dealer value</p>
-          <input
-            max={30}
-            min={0}
-            type="number"
-            className="px-4 py-1 rounded-sm shadow-xl w-24"
-            value={dealer}
-            onChange={(e) => setDealer(e.target.value)}
-          />
-        </label>
-        <label>
-          <p className="text-sm text-white font-semibold">Player value</p>
-          <input
-            max={30}
-            min={0}
-            type="number"
-            className="px-4 py-1 rounded-sm shadow-xl w-24"
-            value={player}
-            onChange={(e) => setPlayer(e.target.value)}
-          />
-        </label>
+      <div className="flex flex-row w-[65%] justify-evenly">
         <div>
-          <button
-            className="bg-white px-4 py-1 rounded-sm shadow-xl mt-5 font-semibold text-sm"
-            onClick={recommend}
-          >
-            Recommend move
+          <label>
+            <p className="text-sm text-white font-semibold">
+              Decks to be dealth
+            </p>
+            <input
+              type="number"
+              className="px-4 py-1 rounded-sm shadow-xl w-24"
+              min={1}
+              max={10}
+              value={decks}
+              onChange={(e) => setDecks(e.target.value)}
+            />
+          </label>
+          <label>
+            <p className="text-sm text-white font-semibold">Dealer value</p>
+            <input
+              max={30}
+              min={0}
+              type="number"
+              className="px-4 py-1 rounded-sm shadow-xl w-24"
+              value={dealer}
+              onChange={(e) => setDealer(e.target.value)}
+            />
+          </label>
+          <label>
+            <p className="text-sm text-white font-semibold">Player value</p>
+            <input
+              max={30}
+              min={0}
+              type="number"
+              className="px-4 py-1 rounded-sm shadow-xl w-24"
+              value={player}
+              onChange={(e) => setPlayer(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="flex flex-col justify-evenly gap-2 h-44">
+          <button className="cbutton" onClick={() => count(1)}>
+            2, 3, 4, 5, 6
+          </button>
+          <button className="cbutton" onClick={() => count(0)}>
+            7, 8, 9
+          </button>
+          <button className="cbutton" onClick={() => count(-1)}>
+            10, J, Q, K, A
           </button>
         </div>
-        <div>
-          <button
-            onClick={next}
-            className="bg-white px-4 py-1 rounded-sm shadow-xl mt-5 font-semibold text-sm"
-          >
-            next hand
-          </button>
-        </div>
-      </div>
-      <div>
         <div className="flex flex-col items-center">
           <p className="text-white text-lg my-3 font-semibold">
             Current Running-Count: {countState}
@@ -116,15 +113,30 @@ function Box() {
             True Count: {countState == 0 ? 0 : Math.round(countState / decks)}
           </p>
         </div>
-        <div className="flex flex-row justify-center gap-12">
-          <button className="cbutton" onClick={() => count(1)}>
-            2, 3, 4, 5, 6
+      </div>
+      <div className="flex gap-2 items-center justify-center">
+        <div>
+          <button
+            className="bg-white px-5 py-2 rounded-sm w-44 button mt-5 font-semibold text-sm"
+            onClick={recommend}
+          >
+            Recommend Move
           </button>
-          <button className="cbutton" onClick={() => count(0)}>
-            7, 8, 9
+        </div>
+        <div>
+          <button
+            onClick={next}
+            className="bg-white px-5 py-2 rounded-sm w-44 button mt-5 font-semibold text-sm"
+          >
+            Next Hand
           </button>
-          <button className="cbutton" onClick={() => count(-1)}>
-            10, J, Q, K, A
+        </div>
+        <div>
+          <button
+            onClick={saveGame}
+            className="bg-white px-5 py-2 rounded-sm w-44 mt-5 font-semibold text-sm button"
+          >
+            Save to Database
           </button>
         </div>
       </div>

@@ -15,4 +15,7 @@ export default async function handler(req, res) {
   if(savedGame) return res.json({
     message: "Successfully updated Blackjacker Database."
   })
+  return res.json({
+    message: "Error while trying to update Blackjacker Database."
+  })
 }

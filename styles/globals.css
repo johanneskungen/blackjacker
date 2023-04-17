@@ -39,6 +39,7 @@
 
 .sidebar{
   grid-area: sidebar;
+  height: calc(100vh - 6rem);
 }
 
 .box{
@@ -47,8 +48,7 @@
 
 .box_container{
   display: grid;
-  grid-template-columns: 25vw 75vw;
+  grid-template-columns: 20vw 80vw;
   grid-template-rows: auto;
   grid-template-areas: "sidebar box";
-  gap: 0;
 }
