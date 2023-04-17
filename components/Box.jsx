@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { rec } from "@/fu/recomendation";
+import toast, { Toaster } from "react-hot-toast";
 
 function Box() {
   const [countState, setCountState] = useState(0);
@@ -8,11 +9,12 @@ function Box() {
   const [player, setPlayer] = useState("");
   const [decks, setDecks] = useState(1);
   const [recomendation, setRecomendation] = useState(null);
+  const [status, setStatus] = useState("");
 
   const next = () => {
-    setDealer("")
-    setPlayer("")
-  }
+    setDealer("");
+    setPlayer("");
+  };
 
   const count = (value) => {
     setCountState((prev) => prev + value);
@@ -27,8 +29,23 @@ function Box() {
       ? setRecomendation("No recomendation available")
       : setRecomendation(res.message);
   };
+
+  const saveGame = async () => {
+    const response = await fetch("http://localhost:3000/api/savegame");
+    const statusMessage = await response.json();
+    toast(statusMessage.message);
+  };
+
   return (
-    <div className="w-[720px] mx-auto bg-black shadow-xl flex justify-evenly items-center p-3 h-[360px] mt-24">
+    <div className="w-[720px] border mx-auto flex justify-evenly items-center p-3 h-[360px] box">
+      <Toaster
+        className="text-sm"
+        toastOptions={{
+          success: {
+            duration: 2500,
+          },
+        }}
+      />
       <div
         className={`absolute bg-orange-600 top-44 right-64 text-white h-8 flex items-center px-2 rounded-sm shadow-xl text-sm font-semibold ${
           !recomendation && "hidden"
@@ -79,7 +96,10 @@ function Box() {
           </button>
         </div>
         <div>
-          <button onClick={next} className="bg-white px-4 py-1 rounded-sm shadow-xl mt-5 font-semibold text-sm">
+          <button
+            onClick={next}
+            className="bg-white px-4 py-1 rounded-sm shadow-xl mt-5 font-semibold text-sm"
+          >
             next hand
           </button>
         </div>

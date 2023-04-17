@@ -5,13 +5,12 @@ import Footer from "./Footer";
 import { useRouter } from "next/router";
 
 function Hero() {
-
-  const router = useRouter()
+  const router = useRouter();
   return (
     <main className="text-white">
       <div className="w-fit mx-auto">
         <div className="w-[1024px] h-[545px] 2xl:h-[600px] mt-8 overflow-hidden">
-          <Image alt="Scary clown" src={clown} className="object-contain w-full h-full img" />
+          {/*<Image alt="Scary clown" src={clown} className="object-contain w-full h-full img" /> */}
         </div>
         <div className="w-fit mx-auto text-center relative bottom-[22rem]">
           <h1 className="text-5xl font-bold text mb-[3px]">
@@ -21,7 +20,9 @@ function Hero() {
             Card-counting made super simple with Blackjacker, free to use when
             signing up for an account.
           </h3>
-          <button className="button" onClick={() => router.push("/counter")}>Try now!</button>
+          <button className="button" onClick={() => router.push("/counter")}>
+            Try now!
+          </button>
         </div>
         <Footer />
       </div>
