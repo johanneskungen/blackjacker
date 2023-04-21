@@ -32,7 +32,7 @@ function Box() {
   };
 
   const saveGame = async () => {
-    const response = await fetch("http://localhost:3000/api/savegame");
+    const response = await fetch("/api/savegame");
     const statusMessage = await response.json();
     toast(statusMessage.message);
   };
