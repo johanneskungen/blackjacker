@@ -10,7 +10,7 @@ function Box() {
   const [player, setPlayer] = useState("");
   const [decks, setDecks] = useState(1);
   const [recomendation, setRecomendation] = useState(null);
-  const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const next = () => {
     setDealer("");
@@ -25,16 +25,35 @@ function Box() {
 
   const recommend = () => {
     const trueC = Math.round(countState / decks);
-    const res = rec(parseInt(player), parseInt(dealer), trueC);
+    const res = rec(parseInt(player), parseInt(dealer), trueC, 0);
     res === undefined
       ? setRecomendation("No recomendation available")
       : setRecomendation(res.message);
   };
 
   const saveGame = async () => {
-    const response = await fetch("/api/savegame");
+    setLoading(true);
+    if (dealer === "" || player === "") {
+      setLoading(false);
+      return alert("Need to fill in dealer or player value.");
+    }
+
+    const response = await fetch("/api/savegame", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        countState,
+        dealer,
+        player,
+        cards: cardsDealth,
+        trueC: Math.round(countState / decks),
+      }),
+    });
     const statusMessage = await response.json();
     toast(statusMessage.message);
+    setLoading(false);
   };
 
   return (
@@ -48,7 +67,8 @@ function Box() {
         }}
       />
       <div
-        className={`absolute bg-orange-600 top-44 right-64 text-white h-8 flex items-center px-2 rounded-sm shadow-xl text-sm font-semibold ${
+      onClick={() => setRecomendation("")}
+        className={`absolute bg-orange-600 top-44 right-64 text-white h-8 flex items-center px-2 rounded-sm shadow-xl text-sm font-semibold cursor-pointer ${
           !recomendation && "hidden"
         }`}
       >
@@ -83,8 +103,8 @@ function Box() {
           <label>
             <p className="text-sm text-white font-semibold">Dealer value</p>
             <input
-              max={30}
-              min={0}
+              max={21}
+              min={2}
               autoFocus
               type="number"
               className="px-4 py-1 rounded-sm shadow-xl w-24"
@@ -95,8 +115,8 @@ function Box() {
           <label>
             <p className="text-sm text-white font-semibold">Player value</p>
             <input
-              max={30}
-              min={0}
+              max={21}
+              min={2}
               type="number"
               className="px-4 py-1 rounded-sm shadow-xl w-24"
               value={player}
@@ -138,7 +158,7 @@ function Box() {
             onClick={saveGame}
             className="bg-white px-5 py-2 rounded-sm w-44 mt-5 font-semibold text-sm button"
           >
-            Save to Database
+            {loading ? "Loading..." : "Save to Database"}
           </button>
         </div>
       </div>
