@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { rec } from "@/fu/recomendation";
 import toast, { Toaster } from "react-hot-toast";
 
 function Box() {
+  const dRef = useRef()
   const [countState, setCountState] = useState(0);
   const [cardsDealth, setCardsDealth] = useState(0);
   const [dealer, setDealer] = useState("");
@@ -73,6 +74,7 @@ function Box() {
             <input
               max={30}
               min={0}
+              autoFocus
               type="number"
               className="px-4 py-1 rounded-sm shadow-xl w-24"
               value={dealer}

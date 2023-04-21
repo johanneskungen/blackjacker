@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import { FaUserCircle } from 'react-icons/fa'
 
 function Navbar() {
   const router = useRouter()
@@ -9,10 +10,8 @@ function Navbar() {
       <div className="absolute left-[50%] translate-x-[-50%]">
         <h1 className="navheading text-2xl font-bold cursor-pointer" onClick={() => router.push("/")}>Blackjacker</h1>
       </div>
-      <div className="text-sm flex gap-8 text-white font-semibold underline-offset-2 underline">
-        <p className="cursor-pointer">Usuage</p>
-        <p className="cursor-pointer">Help</p>
-        <p className="cursor-pointer">Legal Terms</p>
+      <div>
+        <FaUserCircle size={27} color="#ff8000" className="cursor-pointer"/>
       </div>
     </nav>
   );
