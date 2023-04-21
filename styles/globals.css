@@ -23,6 +23,9 @@
   .cbutton {
     @apply bg-white text-black/80 font-semibold px-2 py-1 rounded-sm shadow-lg hover:scale-105 duration-75;
   }
+  .card{
+    @apply cursor-pointer hover:border duration-75 hover:scale-105 rounded-sm
+  }
 }
 
 .anibutton:hover {

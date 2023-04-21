@@ -1,20 +1,22 @@
 import React, { useRef, useState } from "react";
 import { rec } from "@/fu/recomendation";
 import toast, { Toaster } from "react-hot-toast";
+import Cards from "./Cards";
 
 function Box() {
   const dRef = useRef();
   const [countState, setCountState] = useState(0);
   const [cardsDealth, setCardsDealth] = useState(0);
-  const [dealer, setDealer] = useState("");
-  const [player, setPlayer] = useState("");
+  const [dealer, setDealer] = useState(0);
+  const [player, setPlayer] = useState(0);
   const [decks, setDecks] = useState(1);
   const [recomendation, setRecomendation] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [active, setActive] = useState("dealer");
 
   const next = () => {
-    setDealer("");
-    setPlayer("");
+    setDealer(0);
+    setPlayer(0);
   };
 
   const count = (value) => {
@@ -67,61 +69,37 @@ function Box() {
         }}
       />
       <div
-      onClick={() => setRecomendation("")}
+        onClick={() => setRecomendation("")}
         className={`absolute bg-orange-600 top-44 right-64 text-white h-8 flex items-center px-2 rounded-sm shadow-xl text-sm font-semibold cursor-pointer ${
           !recomendation && "hidden"
         }`}
       >
         {recomendation}
       </div>
-      <div className="flex flex-row w-[65%] justify-evenly">
-        <div className="flex flex-col items-start justify-center text-sm">
-          <p className="text-white my-3 font-semibold">
-            Current Running-Count: {countState}
-          </p>
-          <p className=" text-white my-3 font-semibold">
-            Cards Counted: {cardsDealth}
-          </p>
-          <p className=" text-white my-3 font-semibold">
-            True Count: {countState == 0 ? 0 : Math.round(countState / decks)}
-          </p>
-        </div>
-        <div>
-          <label>
-            <p className="text-sm text-white font-semibold">
-              Decks to be dealth
-            </p>
-            <input
-              type="number"
-              className="px-4 py-1 rounded-sm shadow-xl w-24"
-              min={1}
-              max={10}
-              value={decks}
-              onChange={(e) => setDecks(e.target.value)}
-            />
-          </label>
+      <div className="flex flex-row w-[65%] border justify-evenly">
+        <Cards setPlayer={setPlayer} setDealer={setDealer} active={active} />
+        <div className="flex flex-col gap-4">
           <label>
             <p className="text-sm text-white font-semibold">Dealer value</p>
-            <input
-              max={21}
-              min={2}
-              autoFocus
-              type="number"
-              className="px-4 py-1 rounded-sm shadow-xl w-24"
-              value={dealer}
-              onChange={(e) => setDealer(e.target.value)}
-            />
+            <div
+              className={`px-4 py-1 rounded-sm shadow-xl w-24 bg-white cursor-pointer ${
+                active === "dealer" && "outline outline-green-400 outline-2"
+              }`}
+              onClick={() => setActive("dealer")}
+            >
+              {dealer}
+            </div>
           </label>
           <label>
             <p className="text-sm text-white font-semibold">Player value</p>
-            <input
-              max={21}
-              min={2}
-              type="number"
-              className="px-4 py-1 rounded-sm shadow-xl w-24"
-              value={player}
-              onChange={(e) => setPlayer(e.target.value)}
-            />
+            <div
+              className={`px-4 py-1 rounded-sm shadow-xl w-24 bg-white cursor-pointer ${
+                active === "player" && "outline outline-green-400 outline-2"
+              }`}
+              onClick={() => setActive("player")}
+            >
+              {player}
+            </div>
           </label>
         </div>
         <div className="flex flex-col justify-evenly gap-2 h-44">
