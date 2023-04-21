@@ -13,10 +13,14 @@ function Box() {
   const [recomendation, setRecomendation] = useState(null);
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState("dealer");
+  const [popup, setPopup] = useState(false)
 
   const next = () => {
     setDealer(0);
     setPlayer(0);
+
+    setPopup(true)
+
   };
 
   const count = (value) => {
@@ -76,7 +80,16 @@ function Box() {
       >
         {recomendation}
       </div>
-      <div className="flex flex-row w-[65%] border justify-evenly">
+      <div className={`${popup ? "block" : "hidden"} absolute w-screen h-screen bg-black/70 top-0 left-0 flex items-center justify-center`}>
+        <div className="w-96 h-44 bg-white rounded-md">
+          <p className="p-2 text-center font-semibold">Did you win the hand?</p>
+          <div className="flex justify-center gap-12">
+            <button onClick={() => setPopup(false)}>yes</button>
+            <button onClick={() => setPopup(false)}>no</button>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-row w-[65%] justify-evenly">
         <Cards setPlayer={setPlayer} setDealer={setDealer} active={active} />
         <div className="flex flex-col gap-4">
           <label>
@@ -125,7 +138,10 @@ function Box() {
         </div>
         <div>
           <button
-            onClick={next}
+            onClick={() => {
+              next()
+              setActive("dealer")
+            }}
             className="bg-white px-5 py-2 rounded-sm w-44 button mt-5 font-semibold text-sm"
           >
             Next Hand
