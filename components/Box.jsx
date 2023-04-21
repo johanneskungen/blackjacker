@@ -3,7 +3,7 @@ import { rec } from "@/fu/recomendation";
 import toast, { Toaster } from "react-hot-toast";
 
 function Box() {
-  const dRef = useRef()
+  const dRef = useRef();
   const [countState, setCountState] = useState(0);
   const [cardsDealth, setCardsDealth] = useState(0);
   const [dealer, setDealer] = useState("");
@@ -55,6 +55,17 @@ function Box() {
         {recomendation}
       </div>
       <div className="flex flex-row w-[65%] justify-evenly">
+        <div className="flex flex-col items-start justify-center text-sm">
+          <p className="text-white my-3 font-semibold">
+            Current Running-Count: {countState}
+          </p>
+          <p className=" text-white my-3 font-semibold">
+            Cards Counted: {cardsDealth}
+          </p>
+          <p className=" text-white my-3 font-semibold">
+            True Count: {countState == 0 ? 0 : Math.round(countState / decks)}
+          </p>
+        </div>
         <div>
           <label>
             <p className="text-sm text-white font-semibold">
@@ -103,17 +114,6 @@ function Box() {
           <button className="cbutton" onClick={() => count(-1)}>
             10, J, Q, K, A
           </button>
-        </div>
-        <div className="flex flex-col items-center">
-          <p className="text-white text-lg my-3 font-semibold">
-            Current Running-Count: {countState}
-          </p>
-          <p className=" text-white text-lg my-3 font-semibold">
-            Cards Counted: {cardsDealth}
-          </p>
-          <p className=" text-white text-lg my-3 font-semibold">
-            True Count: {countState == 0 ? 0 : Math.round(countState / decks)}
-          </p>
         </div>
       </div>
       <div className="flex gap-2 items-center justify-center">
