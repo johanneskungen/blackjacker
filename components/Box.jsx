@@ -19,7 +19,7 @@ function Box() {
     setDealer(0);
     setPlayer(0);
 
-    setPopup(true)
+    
 
   };
 
