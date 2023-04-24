@@ -12,7 +12,7 @@ function Hero() {
         <div className="w-[1024px] h-[545px] 2xl:h-[600px] mt-8 overflow-hidden">
           {/*<Image alt="Scary clown" src={clown} className="object-contain w-full h-full img" /> */}
         </div>
-        <div className="w-fit mx-auto text-center relative bottom-[22rem]">
+        <div className="md:w-fit w-[400px] mx-auto md:text-center relative bottom-[22rem]">
           <h1 className="text-5xl font-bold text mb-[3px]">
             Your online Black jack card-counter
           </h1>
