@@ -12,10 +12,7 @@ datasource db {
 
 model Game{
   id String @default(cuid()) @id
-  cards Int
-  blackjacks Int
-  true Int
-  running Int
   dcard Int
   pcard Int
+  win Boolean
 }

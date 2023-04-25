@@ -2,13 +2,10 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
-  const { cards, player, dealer, countState, trueC } = req.body;
+  const { player, dealer } = req.body;
   const savedGame = await prisma.game.create({
     data: {
-      cards: cards,
-      blackjacks: 3,
-      true: trueC,
-      running: countState,
+      win: true, 
       dcard: parseInt(dealer),
       pcard: parseInt(player),
     },

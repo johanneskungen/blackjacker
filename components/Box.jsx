@@ -22,7 +22,6 @@ function Box() {
     }));
   };
 
-
   const recommend = () => {
     const res = rec(parseInt(player.value), parseInt(dealer.value), player.ace);
     res === undefined

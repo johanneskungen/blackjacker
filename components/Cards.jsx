@@ -23,12 +23,12 @@ function Cards({ setPlayer, setDealer, active, setActive }) {
         setDealer((prev) => ({
           value: prev.value + int,
         }));
-        setActive("player")
+        setActive("player");
         break;
       case "player":
         setPlayer((prev) => ({
           value: prev.value + int,
-          ace: aces ? prev.ace + aces : prev.ace
+          ace: aces ? prev.ace + aces : prev.ace,
         }));
         break;
     }
