@@ -52,7 +52,7 @@ function Box() {
   };
 
   return (
-    <div className="w-full mx-auto flex flex-col justify-evenly pt-64 items-center p-3 h-[360px] box">
+    <div className="md:w-full w-screen mx-auto flex flex-col justify-evenly pt-64 items-center p-3 h-[360px] md:box">
       <Toaster
         className="text-sm"
         toastOptions={{
