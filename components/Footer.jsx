@@ -4,7 +4,7 @@ import { MdOutlineMail } from "react-icons/md";
 
 function Footer() {
   return (
-    <footer className="h-[200px] pt-8 flex flex-col justify-between font-semibold bg-[#56929c] shadow-xl relative bottom-[10rem]">
+    <footer className="md:h-[170px] w-screen pt-8 flex flex-col gap-4 md:gap-0 justify-between font-semibold bg-[#56929c] shadow-xl absolute bottom-0 right translate-x-[-50%] left-[50%] md:relative md:bottom-[10rem]">
       <div className="flex flex-row justify-evenly">
         <h3>
           <FaGithub size={30} className="cursor-pointer" />

@@ -9,7 +9,6 @@ function Box() {
   const [recomendation, setRecomendation] = useState(null);
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState("dealer");
-  const [popup, setPopup] = useState(false);
 
   const next = () => {
     setDealer(() => ({
@@ -70,27 +69,14 @@ function Box() {
       >
         {recomendation}
       </div>
-      <div
-        className={`${
-          popup ? "block" : "hidden"
-        } absolute w-screen h-screen bg-black/70 top-0 left-0 flex items-center justify-center`}
-      >
-        <div className="w-96 h-44 bg-white rounded-md">
-          <p className="p-2 text-center font-semibold">Did you win the hand?</p>
-          <div className="flex justify-center gap-12">
-            <button onClick={() => setPopup(false)}>yes</button>
-            <button onClick={() => setPopup(false)}>no</button>
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-row w-[65%] justify-evenly">
+      <div className="flex md:flex-row flex-col-reverse md:w-[65%] justify-evenly items-center">
         <Cards
           setPlayer={setPlayer}
           setDealer={setDealer}
           active={active}
           setActive={setActive}
         />
-        <div className="flex flex-col gap-4">
+        <div className="flex md:flex-col mb-8 md:mb-0 gap-4">
           <label>
             <p className="text-sm text-white font-semibold">Dealer value</p>
             <div
@@ -117,10 +103,7 @@ function Box() {
       </div>
       <div className="flex gap-2 items-center justify-center">
         <div>
-          <button
-            className="bg-white px-5 py-2 rounded-sm w-44 button mt-5 font-semibold text-sm"
-            onClick={recommend}
-          >
+          <button className="b" onClick={recommend}>
             Recommend Move
           </button>
         </div>
@@ -130,16 +113,13 @@ function Box() {
               next();
               setActive("dealer");
             }}
-            className="bg-white px-5 py-2 rounded-sm w-44 button mt-5 font-semibold text-sm"
+            className="b"
           >
             Next Hand
           </button>
         </div>
         <div>
-          <button
-            onClick={saveGame}
-            className="bg-white px-5 py-2 rounded-sm w-44 mt-5 font-semibold text-sm button"
-          >
+          <button onClick={saveGame} className="b">
             {loading ? "Loading..." : "Save to Database"}
           </button>
         </div>

@@ -17,14 +17,20 @@
 }
 
 @layer base {
+  body{
+    @apply overflow-x-clip
+  }
   .button {
-    @apply p-2 bg-[#ff8000] w-72 mt-6 font-semibold text-sm duration-75 rounded-sm anibutton;
+    @apply p-2 bg-[#ff8000] md:w-72 mt-6 font-semibold text-sm duration-75 rounded-sm anibutton;
   }
   .cbutton {
     @apply bg-white text-black/80 font-semibold px-2 py-1 rounded-sm shadow-lg hover:scale-105 duration-75;
   }
   .card{
     @apply cursor-pointer hover:border duration-75 hover:scale-105 rounded-sm
+  }
+  .b{
+    @apply bg-white px-5 py-2 rounded-sm md:w-44 button mt-5 font-semibold text-sm 
   }
 }
 
