@@ -16,7 +16,7 @@ import {
 
 import React from "react";
 
-function Cards({ setPlayer, setDealer, active, setActive }) {
+function Cards({ setPlayer, setDealer, active, setActive, w }) {
   const updateCard = (int, aces) => {
     switch (active) {
       case "dealer":
@@ -33,77 +33,79 @@ function Cards({ setPlayer, setDealer, active, setActive }) {
         break;
     }
   };
+
+  const cardSize = w.v < 490 ? "60" : "70"
   return (
     <main className="text-white flex flex-col items-center">
       <div className="flex">
         <GiCard2Hearts
-          size={60}
+          size={cardSize}
           className="card"
           onClick={() => updateCard(2)}
         />
         <GiCard3Hearts
-          size={60}
+          size={cardSize}
           className="card"
           onClick={() => updateCard(3)}
         />
         <GiCard4Hearts
-          size={60}
+          size={cardSize}
           className="card"
           onClick={() => updateCard(4)}
         />
         <GiCard5Hearts
-          size={60}
+          size={cardSize}
           className="card"
           onClick={() => updateCard(5)}
         />
       </div>
       <div className="flex">
         <GiCard6Hearts
-          size={60}
+          size={cardSize}
           className="card"
           onClick={() => updateCard(6)}
         />
         <GiCard7Hearts
-          size={60}
+          size={cardSize}
           className="card"
           onClick={() => updateCard(7)}
         />
         <GiCard8Hearts
-          size={60}
+          size={cardSize}
           className="card"
           onClick={() => updateCard(8)}
         />
         <GiCard9Hearts
-          size={60}
+          size={cardSize}
           className="card"
           onClick={() => updateCard(9)}
         />
       </div>
       <div className="flex">
         <GiCard10Hearts
-          size={60}
+          size={cardSize}
           className="card"
           onClick={() => updateCard(10)}
         />
         <GiCardJackHearts
-          size={60}
+          size={cardSize}
           className="card"
           onClick={() => updateCard(10)}
         />
         <GiCardQueenHearts
-          size={60}
+          size={cardSize}
           className="card"
           onClick={() => updateCard(10)}
         />
         <GiCardKingHearts
-          size={60}
+          size={cardSize}
           className="card"
           onClick={() => updateCard(10)}
         />
       </div>
       <div>
         <GiCardAceHearts
-          size={60}
+          size={cardSize}
           className="card"
           onClick={() => updateCard(11, 1)}
         />

@@ -3,7 +3,7 @@ import { rec } from "@/fu/recomendation";
 import toast, { Toaster } from "react-hot-toast";
 import Cards from "./Cards";
 
-function Box() {
+function Box({w}) {
   const [dealer, setDealer] = useState({ value: 0, ace: 0 });
   const [player, setPlayer] = useState({ value: 0, ace: 0 });
   const [recomendation, setRecomendation] = useState(null);
@@ -19,6 +19,7 @@ function Box() {
       value: 0,
       ace: 0,
     }));
+    setRecomendation(null)
   };
 
   const recommend = () => {
@@ -75,6 +76,7 @@ function Box() {
           setDealer={setDealer}
           active={active}
           setActive={setActive}
+          w={w}
         />
         <div className="flex md:flex-col mb-8 md:mb-0 gap-4">
           <label>

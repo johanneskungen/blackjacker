@@ -13,7 +13,7 @@ function Footer() {
       <footer className="md:h-[170px] w-screen pt-8 flex flex-col gap-4 md:gap-0 justify-between font-semibold bg-[#56929c] shadow-xl absolute right translate-x-[-50%] left-[50%] md:relative bottom-[-4.5rem] md:bottom-0">
         <div className="flex flex-row justify-evenly md:justify-center md:gap-24">
           <h3>
-            <FaGithub size={30} className="cursor-pointer" />
+            <FaGithub size={(30)} className="cursor-pointer" />
           </h3>
           <h3>
             <FaTwitter size={30} className="cursor-pointer" />
