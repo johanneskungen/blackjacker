@@ -7,7 +7,6 @@ function Box({w}) {
   const [dealer, setDealer] = useState({ value: 0, ace: 0 });
   const [player, setPlayer] = useState({ value: 0, ace: 0 });
   const [recomendation, setRecomendation] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [active, setActive] = useState("dealer");
 
   const next = () => {
@@ -29,28 +28,6 @@ function Box({w}) {
       : setRecomendation(res.message);
   };
 
-  const saveGame = async () => {
-    setLoading(true);
-    if (dealer === "" || player === "") {
-      setLoading(false);
-      return alert("Need to fill in dealer or player value.");
-    }
-
-    const response = await fetch("/api/savegame", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        dealer,
-        player,
-      }),
-    });
-    // fix backend
-    const statusMessage = await response.json();
-    toast(statusMessage.message);
-    setLoading(false);
-  };
 
   return (
     <div className="md:w-full w-screen mx-auto flex flex-col justify-evenly pt-44 md:pt-64 items-center p-3 h-[360px] md:box">
@@ -118,11 +95,6 @@ function Box({w}) {
             className="b"
           >
             Next Hand
-          </button>
-        </div>
-        <div>
-          <button onClick={saveGame} className="b">
-            {loading ? "Loading..." : "Save to Database"}
           </button>
         </div>
       </div>
