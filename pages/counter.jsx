@@ -17,6 +17,8 @@ function counter() {
   return (
     <div className="box_container">
       <Head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9795248660870960"
+     crossorigin="anonymous"></script>
         <title>Blackjacker Basic Strategy Tool</title>
       </Head>
       <Box w={w}/>
